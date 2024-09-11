@@ -74,6 +74,26 @@ const getOnePeriferico = async (req,res) => {
     }
 };
 
+````
+### DELETE/periferico/:id
+Este endpoint é responsável por excluir um periférico cadastrado no banco de dados.
+
+````
+const deletePeriferico = async (req, res) => {
+    try{
+        const {id} = req.params;
+
+        const periferico = await Periferico.findByIdAndDelete(id);
+
+        if(!periferico){
+            res.status(404).json({message:'periférico não encontrado não entrado'});
+        }
+
+        res.status(200).json({message:"Periférido deletado com sucesso"})
+    } catch(error) {
+        res.status(500).json({message: error.message});
+    }
+};
 
 
 
