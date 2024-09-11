@@ -37,10 +37,48 @@ const addPeriferico = async (req, res) => {
 ````
 #### Respostas de status:
 ##### OK! 200
-Caso esta resposta aconteça, um novo jogo foi adicionado no banco de dados da API.
+Caso esta resposta aconteça, um novo jogo foi adicionado com sucesso no banco de dados da API.
 
 ##### Erro Interno do Servidor! 500
 Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
+
+
+### GET/
+Este Endpoint é responsável por mostrar ao usuário todos os periféricos cadastrados no banco de dados.
+````
+const getAllPerifericos = async (req, res) => {
+     try{
+
+        const perifericos = await Periferico.find();
+
+        res.status(200).json({perifericos});
+
+     } catch(error){
+        res.status(500).json({message: error.message});
+     }
+};
+
+````
+### GET/periferico/:id
+
+````
+const getOnePeriferico = async (req,res) => {
+    try{
+        const {id} = req.params;
+
+        const periferico = await Periferico.findById(id);
+
+        res.status(200).json({periferico});
+    }catch(error){
+        res.status(500).json({message: error.message});
+    }
+};
+
+
+
+
+
+
 
 
 
