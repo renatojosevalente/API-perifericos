@@ -60,6 +60,7 @@ const getAllPerifericos = async (req, res) => {
 
 ````
 ### GET/periferico/:id
+Este endpoint é responsável por mostrar apenas um periférico selecionado pelo usuário.
 
 ````
 const getOnePeriferico = async (req,res) => {
@@ -95,6 +96,30 @@ const deletePeriferico = async (req, res) => {
     }
 };
 
+````
+
+### PUT/periferico/:id
+Este endpoint é responsável por modificar as características do periférico selecionado.
+
+
+````
+const updatePeriferico = async (req, res) => {
+
+    try{
+        const {id} = req.params;
+
+        const periferico = await Periferico.findByIdAndUpdate(id, req.body);
+    
+        res.status(200).json(periferico);
+    
+        const updatedPeriferico = await Periferico.findById(id);
+    
+        res.status(200).json(updatedPeriferico);
+    }catch(error){
+
+    }
+   
+}
 
 
 
