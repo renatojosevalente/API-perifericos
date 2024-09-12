@@ -1,35 +1,35 @@
-// Importa o módulo `mongoose`, que é uma biblioteca para interagir com o MongoDB.
+// Importa o mongoose para interagir com o MongoDB
 const mongoose = require('mongoose');
 
-// Extrai o objeto `Schema` do módulo `mongoose`, que é usado para definir a estrutura dos dados.
+// Desestrutura o objeto Schema do mongoose
 const { Schema } = mongoose;
 
+// Define o esquema para as dimensões de um periférico
 const dimensoesSchema = new Schema({
-    altura:Number,
-    largura:Number,
-    comprimento:Number
-})
+    altura: Number,
+    largura: Number,
+    comprimento: Number
+});
 
-// Define um esquema para as características dos periféricos. Este esquema descreve como as características devem ser armazenadas.
+// Define o esquema para as características de um periférico
 const caracteristicaSchema = new Schema({
-    cor: String,      // A cor do periférico, armazenada como uma string.
-    peso: Number,      // O peso do periférico, armazenado como um número.
-    dimensao:[dimensoesSchema]
+    cor: String,
+    peso: Number,
+    dimensao: [dimensoesSchema]  // Inclui as dimensões dentro das características
 });
 
-
-
-// Define o esquema principal para os periféricos. Este esquema descreve como as informações do periférico devem ser armazenadas.
+// Define o esquema principal para um periférico
 const perifericosSchema = new Schema({
-    produtoTipo: String,        // Tipo do produto (por exemplo, teclado, mouse), armazenado como uma string.
-    modelo: String,             // Modelo do periférico, armazenado como uma string.
-    marca: String,              // Marca do periférico, armazenada como uma string.
-    price:Number,               
-    caracteristicas: [caracteristicaSchema]  // Uma lista de características associadas ao periférico, usando o esquema de características definido acima.
+    produtoNome: String,
+    produtoTipo: String,
+    modelo: String,
+    marca: String,
+    preco: Number,
+    caracteristicas: [caracteristicaSchema]  // Lista de características do periférico
 });
 
-// Cria um modelo de dados chamado "Periferico" baseado no esquema de periféricos. O modelo é usado para interagir com a coleção de periféricos no banco de dados.
+// Cria o modelo Periferico baseado no esquema definido
 const Periferico = mongoose.model("Periferico", perifericosSchema);
 
-// Exporta o modelo `Periferico` para que possa ser usado em outras partes do programa.
+// Exporta o modelo para ser utilizado em outras partes da aplicação
 module.exports = Periferico;

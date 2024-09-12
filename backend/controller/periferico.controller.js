@@ -1,109 +1,92 @@
-// Importa o modelo de dados para periféricos, que define como os dados dos periféricos devem ser armazenados no banco de dados.
-const Periferico = require('../models/periferico.models.js')
+// Importa o modelo Periferico para interação com o banco de dados
+const Periferico = require('../models/periferico.models.js');
 
-// Função para adicionar um novo periférico ao banco de dados.
+// Adiciona um novo periférico ao banco de dados
 const addPeriferico = async (req, res) => {
     try {
-        // Extrai as informações do periférico enviadas na requisição (req.body).
-        const { produtoTipo, modelo, marca, price, caracteristicas } = req.body;
+        // Desestrutura as informações do corpo da requisição
+        const { produtoNome, produtoTipo, modelo, marca, preco, caracteristicas } = req.body;
 
-        // Cria um novo objeto com as informações do periférico.
-        let novoPeriferico = {
-            produtoTipo,
-            modelo,
-            marca,
-            price,
-            caracteristicas
-        };
+        // Cria e salva o novo periférico no banco de dados
+        const periferico = await Periferico.create({ produtoNome, produtoTipo, modelo, marca, preco, caracteristicas });
 
-        // Salva o novo periférico no banco de dados e espera a operação terminar.
-        const periferico = await Periferico.create(novoPeriferico);
-
-        // Retorna o periférico adicionado com um status de sucesso (200).
-        res.status(200).json({ message: "Periférico cadastrado com sucesso: ", periferico });
-
+        // Retorna o periférico criado com sucesso
+        res.status(200).json({ message: "Periférico cadastrado com sucesso", periferico });
     } catch (error) {
-        // Se ocorrer um erro, retorna uma mensagem de erro com status 500 (erro interno do servidor).
-        res.status(500).json({ message: error.message });
-    }
-}
-
-// Função para obter todos os periféricos armazenados no banco de dados.
-const getAllPerifericos = async (req, res) => {
-    try {
-        // Busca todos os periféricos no banco de dados.
-        const perifericos = await Periferico.find();
-
-        // Retorna todos os periféricos encontrados com um status de sucesso (200).
-        res.status(200).json({ message: "Listando todos os perfiféricos: ", perifericos });
-
-    } catch (error) {
-        // Se ocorrer um erro, retorna uma mensagem de erro com status 500.
+        // Retorna erro em caso de falha
         res.status(500).json({ message: error.message });
     }
 };
 
-// Função para obter um periférico específico com base no ID fornecido na requisição.
+// Retorna todos os periféricos cadastrados
+const getAllPerifericos = async (req, res) => {
+    try {
+        // Busca todos os periféricos no banco de dados
+        const perifericos = await Periferico.find();
+
+        // Retorna a lista de periféricos
+        res.status(200).json({ message: "Lista de periféricos", perifericos });
+    } catch (error) {
+        // Retorna erro em caso de falha
+        res.status(500).json({ message: error.message });
+    }
+};
+
+// Retorna um periférico específico pelo ID
 const getOnePeriferico = async (req, res) => {
     try {
-        // Extrai o ID do periférico da URL da requisição (req.params).
         const { id } = req.params;
 
-        // Busca o periférico com o ID fornecido no banco de dados.
+        // Busca o periférico pelo ID
         const periferico = await Periferico.findById(id);
 
         if (!periferico) {
-            res.status(404).json({ message: 'Periférico não encontrado' });
-        } else {
-            // Retorna o periférico encontrado com um status de sucesso (200).
-            res.status(200).json({ message: "Periférico encontrado com sucesso: ", periferico });
+            return res.status(404).json({ message: 'Periférico não encontrado' });
         }
 
+        // Retorna o periférico encontrado
+        res.status(200).json({ message: "Periférico encontrado", periferico });
     } catch (error) {
-        // Se ocorrer um erro, retorna uma mensagem de erro com status 500.
+        // Retorna erro em caso de falha
         res.status(500).json({ message: error.message });
     }
 };
 
-// Função para excluir um periférico específico com base no ID fornecido na requisição.
+// Exclui um periférico pelo ID
 const deletePeriferico = async (req, res) => {
     try {
-        // Extrai o ID do periférico da URL da requisição (req.params).
         const { id } = req.params;
 
-        // Tenta excluir o periférico com o ID fornecido do banco de dados.
+        // Exclui o periférico pelo ID
         const periferico = await Periferico.findByIdAndDelete(id);
 
-        // Se o periférico não for encontrado, retorna uma mensagem de erro com status 404 (não encontrado).
         if (!periferico) {
-            res.status(404).json({ message: 'Periférico não encontrado' });
-        } else {
-            // Se o periférico for excluído com sucesso, retorna uma mensagem de sucesso com status 200.
-            res.status(200).json({ message: "Periférico deletado com sucesso" });
+            return res.status(404).json({ message: 'Periférico não encontrado' });
         }
+
+        // Confirma a exclusão do periférico
+        res.status(200).json({ message: "Periférico deletado com sucesso" });
     } catch (error) {
-        // Se ocorrer um erro, retorna uma mensagem de erro com status 500.
+        // Retorna erro em caso de falha
         res.status(500).json({ message: error.message });
     }
 };
 
-// Função para atualizar as informações de um periférico específico com base no ID fornecido na requisição.
+// Atualiza um periférico pelo ID
 const updatePeriferico = async (req, res) => {
     try {
-        // Extrai o ID do periférico da URL da requisição (req.params).
         const { id } = req.params;
 
-        // Atualiza o periférico com o ID fornecido com os novos dados enviados na requisição (req.body).
+        // Atualiza as informações do periférico
         const periferico = await Periferico.findByIdAndUpdate(id, req.body, { new: true });
 
-        // Retorna o periférico atualizado com um status de sucesso (200).
+        // Retorna o periférico atualizado
         res.status(200).json(periferico);
-
     } catch (error) {
-        // Se ocorrer um erro, retorna uma mensagem de erro com status 500.
+        // Retorna erro em caso de falha
         res.status(500).json({ message: error.message });
     }
-}
+};
 
-// Exporta todas as funções para que possam ser usadas em outras partes do programa.
+// Exporta as funções para uso em outras partes da aplicação
 module.exports = { addPeriferico, getAllPerifericos, getOnePeriferico, deletePeriferico, updatePeriferico };
