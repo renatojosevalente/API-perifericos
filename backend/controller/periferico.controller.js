@@ -5,14 +5,14 @@ const Periferico = require('../models/periferico.models.js')
 const addPeriferico = async (req, res) => {
     try {
         // Extrai as informações do periférico enviadas na requisição (req.body).
-        const { produtoTipo, modelo, marca, anoFabricacao, caracteristicas } = req.body;
+        const { produtoTipo, modelo, marca, price, caracteristicas } = req.body;
 
         // Cria um novo objeto com as informações do periférico.
         let novoPeriferico = {
             produtoTipo,
             modelo,
             marca,
-            anoFabricacao,
+            price,
             caracteristicas
         };
 
@@ -20,11 +20,11 @@ const addPeriferico = async (req, res) => {
         const periferico = await Periferico.create(novoPeriferico);
 
         // Retorna o periférico adicionado com um status de sucesso (200).
-        res.status(200).json(periferico);
+        res.status(200).json({ message: "Periférico cadastrado com sucesso: ", periferico });
 
-    } catch(error) {
+    } catch (error) {
         // Se ocorrer um erro, retorna uma mensagem de erro com status 500 (erro interno do servidor).
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 }
 
@@ -35,11 +35,11 @@ const getAllPerifericos = async (req, res) => {
         const perifericos = await Periferico.find();
 
         // Retorna todos os periféricos encontrados com um status de sucesso (200).
-        res.status(200).json({perifericos});
+        res.status(200).json({ message: "Listando todos os perfiféricos: ", perifericos });
 
-    } catch(error) {
+    } catch (error) {
         // Se ocorrer um erro, retorna uma mensagem de erro com status 500.
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -47,16 +47,21 @@ const getAllPerifericos = async (req, res) => {
 const getOnePeriferico = async (req, res) => {
     try {
         // Extrai o ID do periférico da URL da requisição (req.params).
-        const {id} = req.params;
+        const { id } = req.params;
 
         // Busca o periférico com o ID fornecido no banco de dados.
         const periferico = await Periferico.findById(id);
 
-        // Retorna o periférico encontrado com um status de sucesso (200).
-        res.status(200).json({periferico});
-    } catch(error) {
+        if (!periferico) {
+            res.status(404).json({ message: 'Periférico não encontrado' });
+        } else {
+            // Retorna o periférico encontrado com um status de sucesso (200).
+            res.status(200).json({ message: "Periférico encontrado com sucesso: ", periferico });
+        }
+
+    } catch (error) {
         // Se ocorrer um erro, retorna uma mensagem de erro com status 500.
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -64,21 +69,21 @@ const getOnePeriferico = async (req, res) => {
 const deletePeriferico = async (req, res) => {
     try {
         // Extrai o ID do periférico da URL da requisição (req.params).
-        const {id} = req.params;
+        const { id } = req.params;
 
         // Tenta excluir o periférico com o ID fornecido do banco de dados.
         const periferico = await Periferico.findByIdAndDelete(id);
 
         // Se o periférico não for encontrado, retorna uma mensagem de erro com status 404 (não encontrado).
         if (!periferico) {
-            res.status(404).json({message: 'Periférico não encontrado'});
+            res.status(404).json({ message: 'Periférico não encontrado' });
         } else {
             // Se o periférico for excluído com sucesso, retorna uma mensagem de sucesso com status 200.
-            res.status(200).json({message: "Periférico deletado com sucesso"});
+            res.status(200).json({ message: "Periférico deletado com sucesso" });
         }
-    } catch(error) {
+    } catch (error) {
         // Se ocorrer um erro, retorna uma mensagem de erro com status 500.
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 };
 
@@ -86,19 +91,19 @@ const deletePeriferico = async (req, res) => {
 const updatePeriferico = async (req, res) => {
     try {
         // Extrai o ID do periférico da URL da requisição (req.params).
-        const {id} = req.params;
+        const { id } = req.params;
 
         // Atualiza o periférico com o ID fornecido com os novos dados enviados na requisição (req.body).
         const periferico = await Periferico.findByIdAndUpdate(id, req.body, { new: true });
 
         // Retorna o periférico atualizado com um status de sucesso (200).
         res.status(200).json(periferico);
-        
-    } catch(error) {
+
+    } catch (error) {
         // Se ocorrer um erro, retorna uma mensagem de erro com status 500.
-        res.status(500).json({message: error.message});
+        res.status(500).json({ message: error.message });
     }
 }
 
 // Exporta todas as funções para que possam ser usadas em outras partes do programa.
-module.exports = {addPeriferico, getAllPerifericos, getOnePeriferico, deletePeriferico, updatePeriferico };
+module.exports = { addPeriferico, getAllPerifericos, getOnePeriferico, deletePeriferico, updatePeriferico };
