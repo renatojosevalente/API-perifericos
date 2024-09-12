@@ -2,9 +2,17 @@
 Esta API é utilizada para o gerenciamento de catálogo de equipamentos periférico para PC, permitindo operações de CRUD (criar, ler, atualizar, deletar).
 
 ## Endpoints
-### - POST/cadastrar
-Este Endpoint é responsável pela adição de novos games no banco de dados da API.
+### - POST/periferico
+Este Endpoint é responsável pelo cadastro de novos periféricos no banco de dados da API.
+#### Parâmetros:
 
+produtoTipo: Tipo de periférico <br>
+modelo: Modelo do periférico<br>
+marca:   Marca do periférico <br>
+anoFabricação: Ano de fabricação do periférico <br>
+caracteristicas: Descrição especifíca do periférico <br>
+
+#### Exemplo de requisição:
 ```
 const addPeriferico = async (req, res) => {
 
@@ -43,7 +51,7 @@ Caso esta resposta aconteça, um novo jogo foi adicionado com sucesso no banco d
 Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
 
 
-### GET/
+### GET/periferico
 Este Endpoint é responsável por mostrar ao usuário todos os periféricos cadastrados no banco de dados.
 ````
 const getAllPerifericos = async (req, res) => {
@@ -120,7 +128,7 @@ const updatePeriferico = async (req, res) => {
     }
    
 }
-
+````
 
 
 
