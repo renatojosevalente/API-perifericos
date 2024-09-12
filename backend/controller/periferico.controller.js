@@ -1,5 +1,5 @@
 // Importa o modelo de dados para periféricos, que define como os dados dos periféricos devem ser armazenados no banco de dados.
-const Periferico = require('../models/perifericos.models.js')
+const Periferico = require('../models/periferico.models.js')
 
 // Função para adicionar um novo periférico ao banco de dados.
 const addPeriferico = async (req, res) => {

@@ -11,13 +11,14 @@ const app = express();
 const port = '5000';
 
 // Importa o roteador que define as rotas para gerenciar periféricos.
-const Router = require('./routes/perifericos.routes.js');
+const perifericoRouter = require('./routes/periferico.routes.js');
+const userRouter = require('./routes/user.routes.js');
 
 // Configura o Express para usar o middleware que faz o parsing de JSON nas requisições.
 app.use(express.json());
 
 // Importa o modelo de dados para periféricos, que define como os dados dos periféricos devem ser armazenados no banco de dados.
-const Perifericos = require('./models/perifericos.models.js');
+//const Perifericos = require('./models/periferico.models.js');
 
 // Função para estabelecer a conexão com o banco de dados MongoDB.
 function connection() {
@@ -42,4 +43,6 @@ app.listen(port, () => {
 });
 
 // Configura o Express para usar o roteador importado para todas as requisições que começam com '/periferico'.
-app.use('/periferico', Router);
+app.use('/periferico', perifericoRouter);
+
+app.use('/usuario', userRouter);
