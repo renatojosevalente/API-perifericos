@@ -45,9 +45,9 @@ const addPeriferico = async (req, res) => {
 ````
 #### Respostas de status:
 ##### OK! 200
-Caso esta resposta aconteça, um novo jogo foi adicionado com sucesso no banco de dados da API.
+Caso esta resposta aconteça, um novo periférico foi adicionado com sucesso no banco de dados da API.
 
-##### Erro Interno do Servidor! 500
+##### Erro! 500
 Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
 
 
