@@ -14,34 +14,22 @@ caracteristicas: Descrição especifíca do periférico <br>
 
 #### Exemplo de requisição:
 ```
-const addPeriferico = async (req, res) => {
-
-    try {
-
-        const {
-            produtoTipo,
-            modelo,
-            marca,
-            anoFabricacao,
-            caracteristicas
-        } = req.body;
-
-        let novoPeriferico = {
-            produtoTipo,
-            modelo,
-            marca,
-            anoFabricacao,
-            caracteristicas
-        }
-
-        const periferico = await Periferico.create(novoPeriferico);
-
-        res.status(200).json(periferico);
-
-    } catch(error) {
-        res.status(500).json({message: error.message});
-    }
+{
+	"produtoTipo": "Mouse",
+	"modelo": "M711",
+	"marca": "Redragon",
+	"price":178.99,
+	"caracteristicas":[{
+		"cor":"Preto",
+		"peso":7,
+		"dimensao":[{
+			"altura":4,
+			"largura":6.6,
+			"comprimento":12.7
+		}]
+	}]
 }
+
 ````
 #### Respostas de status:
 ##### OK! 200
