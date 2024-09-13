@@ -6,15 +6,17 @@ Esta API é utilizada para o gerenciamento de catálogo de equipamentos perifér
 Este Endpoint é responsável pelo cadastro de novos periféricos no banco de dados da API.
 #### Parâmetros:
 
+nome: Nome do periférico <br>
 produtoTipo: Tipo de periférico <br>
 modelo: Modelo do periférico<br>
 marca:   Marca do periférico <br>
-anoFabricação: Ano de fabricação do periférico <br>
-caracteristicas: Descrição especifíca do periférico <br>
+preco: 178.99 <br>
+caracteristicas: Descrições adicionais do periférico <br>	
 
 #### Exemplo de requisição:
 ```
 {
+	"nome": "Cobra Chroma"
 	"produtoTipo": "Mouse",
 	"modelo": "M711",
 	"marca": "Redragon",
