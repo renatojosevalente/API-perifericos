@@ -5,7 +5,7 @@ const Periferico = require('../models/periferico.models.js');
 const addPeriferico = async (req, res) => {
     try {
         // Desestrutura as informações do corpo da requisição, incluindo a imagem
-        const { produtoNome, produtoTipo, modelo, marca, preco, caracteristicas, imagemUrl } = req.body;
+        const { produtoNome, produtoTipo, modelo, marca, preco, caracteristicas, imagemUrl, quantidade } = req.body;
 
         // Cria e salva o novo periférico no banco de dados
         const periferico = await Periferico.create({ 
