@@ -72,6 +72,14 @@ Caso esta resposta aconteça, significa que todos os periféricos do banco estã
 ##### Erro! 500
 Caso essa resposta aconteça, significa que ocorreu um erro no acesso ao banco de dados da API.
 
+#### Exemplo de resposta:
+
+````
+message: error.message
+
+````
+
+
 ### GET/periferico/:id
 Este endpoint é responsável por mostrar apenas um periférico selecionado pelo usuário.
 
@@ -97,8 +105,19 @@ Caso esta resposta aconteça, significa que o periférico selecionado está send
 ##### Erro! 500
 Caso essa resposta aconteça, significa que o periférico procurado não foi encontrado na base de dados.
 
+#### Exemplo de resposta:
+
+````
+message: "Periférico encontrado"
+
+````
+
+
 ### DELETE/periferico/:id
 Este endpoint é responsável por excluir um periférico cadastrado no banco de dados.
+
+### Parâmetros:
+id: Exclui um periférico pelo ID.
 
 ````
 const deletePeriferico = async (req, res) => {
@@ -116,6 +135,21 @@ const deletePeriferico = async (req, res) => {
         res.status(500).json({message: error.message});
     }
 };
+
+````
+
+#### Respostas de status:
+##### OK! 200
+Caso esta resposta aconteça, significa que o periférico selecionado está sendo mostrado com sucesso.
+
+##### Erro! 404
+Caso essa resposta aconteça, significa que o periférico procurado não foi encontrado na base de dados.
+
+#### Exemplo de resposta:
+
+````
+
+message: "Periférico deletado com sucesso" 
 
 ````
 
