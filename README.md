@@ -11,6 +11,8 @@ produtoTipo: Tipo de periférico <br>
 modelo: Modelo do periférico<br>
 marca:   Marca do periférico <br>
 preco: 178.99 <br>
+quantidade: 100 <br>
+imagemUrl: campo para armazenar a Url da imagem <br>
 caracteristicas: Descrições adicionais do periférico <br>	
 
 #### Exemplo de requisição:
