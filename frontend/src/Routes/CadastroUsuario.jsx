@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MdKeyboardBackspace } from "react-icons/md";
 
@@ -31,7 +31,6 @@ export default function CadastroUsuario() {
             });
 
             if (response.ok) {
-                const data = await response.json();
                 alert("Usuário cadastrado com sucesso!");
                 navigate("/");
             } else {

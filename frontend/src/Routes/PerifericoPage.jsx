@@ -35,12 +35,12 @@ export default function PerifericoPage() {
     return (
         <div className="flex flex-col w-full sm:items-center">
             <div>
-                <button onClick={() => navigate("/perifericos")} className="h-9 bg-zinc-700 mb-5 self-start border rounded border-zinc-600 px-2 ">
+                <button onClick={() => navigate("/")} className="h-9 bg-zinc-700 mb-5 self-start border rounded border-zinc-600 px-2 ">
                     <MdKeyboardBackspace size={20} className="font-light text-slate-300" />
                 </button>
                 <div className="sm:flex sm:flex-row sm:gap-8">
                     <img
-                        src="https://tm.ibxk.com.br///2023/03/06/06094008389037.jpg?ims=1024x455"
+                        src={periferico.imagemUrl}
                         className="w-full sm:w-64 h-64 rounded object-cover"
                         alt={periferico.nome}
                     />

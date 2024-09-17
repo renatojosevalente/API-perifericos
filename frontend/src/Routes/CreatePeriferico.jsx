@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { MdKeyboardBackspace } from "react-icons/md";
 
 export default function CreatePeriferico() {
     const navigate = useNavigate();
@@ -13,7 +14,9 @@ export default function CreatePeriferico() {
         peso: "",
         altura: "",
         largura: "",
-        comprimento: ""
+        comprimento: "",
+        quantidade: "",
+        imagemUrl: ""
     });
 
     const handleInputChange = (e) => {
@@ -34,6 +37,7 @@ export default function CreatePeriferico() {
             modelo: formData.modelo,
             marca: formData.marca,
             preco: parseFloat(formData.preco),
+            quantidade: parseInt(formData.quantidade),
             imagemUrl: formData.imagemUrl,
             caracteristicas: [
                 {
@@ -61,7 +65,7 @@ export default function CreatePeriferico() {
 
             if (response.ok) {
                 alert("Periférico criado com sucesso!");
-                navigate("/perifericos");
+                navigate("/");
             } else {
                 const error = await response.json();
                 alert("Erro ao criar periférico: " + error.message);
@@ -74,6 +78,9 @@ export default function CreatePeriferico() {
     return (
         <div className="flex w-full flex-col items-center">
             <div className="w-full flex flex-col items-center">
+                <button onClick={() => navigate("/")} className="h-9 bg-zinc-700 mb-5 self-start border rounded border-zinc-600 px-2 ">
+                    <MdKeyboardBackspace size={20} className="font-light text-slate-300" />
+                </button>
                 <p className="text-2xl font-semibold mb-5">Criar novo periférico</p>
                 <form className="w-full sm:w-auto flex flex-col gap-3" onSubmit={handleSubmit}>
                     <p>Informações gerais:</p>
@@ -117,6 +124,22 @@ export default function CreatePeriferico() {
                         onChange={handleInputChange}
                         className="w-full sm:w-96 h-9 p-2 rounded bg-zinc-700 border border-zinc-600 text-sm shadow focus:outline-none focus:border-2 focus:border-green-500 transition duration-200"
                     />
+                    <input
+                        type="text"
+                        name="quantidade"
+                        placeholder="Quantidade em estoque"
+                        value={formData.quantidade}
+                        onChange={handleInputChange}
+                        className="w-full sm:w-96 h-9 p-2 rounded bg-zinc-700 border border-zinc-600 text-sm shadow focus:outline-none focus:border-2 focus:border-green-500 transition duration-200"
+                    />
+                    <input
+                        type="text"
+                        name="imagemUrl"
+                        placeholder="Imagem"
+                        value={formData.imagemUrl}
+                        onChange={handleInputChange}
+                        className="w-full sm:w-96 h-9 p-2 rounded bg-zinc-700 border border-zinc-600 text-sm shadow focus:outline-none focus:border-2 focus:border-green-500 transition duration-200"
+                    />
                     <p>Características do periférico:</p>
                     <input
                         type="text"
@@ -156,14 +179,6 @@ export default function CreatePeriferico() {
                         name="comprimento"
                         placeholder="Comprimento"
                         value={formData.comprimento}
-                        onChange={handleInputChange}
-                        className="w-full sm:w-96 h-9 p-2 rounded bg-zinc-700 border border-zinc-600 text-sm shadow focus:outline-none focus:border-2 focus:border-green-500 transition duration-200"
-                    />
-                    <input
-                        type="text"
-                        name="imagemUrl"
-                        placeholder="Imagem"
-                        value={formData.imagemUrl}
                         onChange={handleInputChange}
                         className="w-full sm:w-96 h-9 p-2 rounded bg-zinc-700 border border-zinc-600 text-sm shadow focus:outline-none focus:border-2 focus:border-green-500 transition duration-200"
                     />
