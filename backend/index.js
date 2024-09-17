@@ -13,6 +13,12 @@ const port = '5000';
 // Importa o roteador que define as rotas para gerenciar periféricos.
 const perifericoRouter = require('./routes/periferico.routes.js');
 
+// Importa cors para permitir requisições de diferentes origens.
+const cors = require('cors');
+
+// Qualquer domínio e porta pode fazer requisições ao servidor.
+app.use(cors());
+
 // Configura o Express para usar o middleware que faz o parsing de JSON nas requisições.
 app.use(express.json());
 
