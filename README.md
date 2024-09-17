@@ -1,5 +1,5 @@
 # API DE PERIFÉRICOS PARA COMPUTADOR
-Esta API é utilizada para o gerenciamento de catálogo de equipamentos periférico para PC, permitindo operações de CRUD (criar, ler, atualizar, deletar).
+Esta API é utilizada para o gerenciamento de catálogo de equipamentos periférico para PC, permitindo operações de CRUD (cadastrar, ler, atualizar, deletar).
 
 ## Endpoints
 ### - POST/periferico
@@ -38,8 +38,15 @@ caracteristicas: Descrições adicionais do periférico <br>
 Caso esta resposta aconteça, um novo periférico foi adicionado com sucesso no banco de dados da API.
 
 ##### Erro! 500
-Caso essa resposta aconteça, significa que ocorreu um erro interno no servidor. Motivos podem incluir falhas na comunicação com o banco de dados.
+Caso essa resposta aconteça, significa que ocorreu um erro no acesso ao banco de dados da API.
 
+#### Exemplo de resposta:
+
+````
+
+message: "Periférico cadastrado com sucesso"
+
+````
 
 ### GET/periferico
 Este Endpoint é responsável por mostrar ao usuário todos os periféricos cadastrados no banco de dados.
@@ -57,6 +64,14 @@ const getAllPerifericos = async (req, res) => {
 };
 
 ````
+
+#### Respostas de status:
+##### OK! 200
+Caso esta resposta aconteça, significa que todos os periféricos do banco estão sendo mostrados com sucesso.
+
+##### Erro! 500
+Caso essa resposta aconteça, significa que ocorreu um erro no acesso ao banco de dados da API.
+
 ### GET/periferico/:id
 Este endpoint é responsável por mostrar apenas um periférico selecionado pelo usuário.
 
@@ -74,6 +89,14 @@ const getOnePeriferico = async (req,res) => {
 };
 
 ````
+
+#### Respostas de status:
+##### OK! 200
+Caso esta resposta aconteça, significa que o periférico selecionado está sendo mostrado com sucesso.
+
+##### Erro! 500
+Caso essa resposta aconteça, significa que o periférico procurado não foi encontrado na base de dados.
+
 ### DELETE/periferico/:id
 Este endpoint é responsável por excluir um periférico cadastrado no banco de dados.
 
