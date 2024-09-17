@@ -15,6 +15,7 @@ const addPeriferico = async (req, res) => {
             marca, 
             preco, 
             caracteristicas,
+            quantidade,
             imagemUrl  // Adiciona a URL da imagem
         });
 

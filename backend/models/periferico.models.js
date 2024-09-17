@@ -25,6 +25,7 @@ const perifericosSchema = new Schema({
     modelo: String,
     marca: String,
     preco: Number,
+    quantidade:Number,
     imagemUrl: String,  // Campo para armazenar a URL da imagem
     caracteristicas: [caracteristicaSchema]  // Lista de características do periférico
 });
