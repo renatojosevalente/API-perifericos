@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CardPerifericos from "../Components/CardPerifericos";
 import { useNavigate } from "react-router-dom";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaRegTrashAlt, FaPen } from "react-icons/fa";
 
 export default function Root() {
     const navigate = useNavigate();
@@ -68,12 +68,20 @@ export default function Root() {
                             marca={periferico.marca}
                             preco={periferico.preco}
                         />
-                        <button 
-                            onClick={() => deletePeriferico(periferico._id)}
-                            className="self-end flex items-center justify-center w-8 h-8 bg-red-500 rounded"
-                        >
-                            <FaRegTrashAlt className=""/>
-                        </button>
+                        <div className="flex flex-col self-end gap-1">
+                            <button 
+                                onClick={() => navigate(`/editPeriferico/${periferico._id}`)}
+                                className="flex items-center justify-center w-8 h-8 bg-blue-500 rounded"
+                            >
+                                <FaPen className=""/>
+                            </button>
+                            <button 
+                                onClick={() => deletePeriferico(periferico._id)}
+                                className="flex items-center justify-center w-8 h-8 bg-red-500 rounded"
+                            >
+                                <FaRegTrashAlt className=""/>
+                            </button>
+                        </div>
                     </div>
                 ))}
             </div>

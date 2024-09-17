@@ -5,7 +5,8 @@ import {
 import Root from "./Root"
 import PerifericoPage from "./PerifericoPage";
 import CreatePeriferico from "./CreatePeriferico";
-import "../index.css"
+import EditPeriferico from "./EditPeriferico";
+import "../index.css";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
     {
       path: "/createPeriferico",
       element: <CreatePeriferico />
+    },
+    {
+      path: "/editPeriferico/:id",
+      element: <EditPeriferico />
     }
 ]);
 
