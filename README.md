@@ -1,5 +1,5 @@
 # API DE PERIFÉRICOS PARA COMPUTADOR
-Esta API é utilizada para o gerenciamento de catálogo de equipamentos periférico para PC, permitindo operações de CRUD (cadastrar, ler, atualizar, deletar).
+Esta API é utilizada para o gerenciamento de catálogo de equipamentos periféricos para PC com imagens e disponibilidade do produto em estoque, permitindo operações de CRUD (cadastrar, ler, atualizar, deletar).
 
 ## Endpoints
 ### - POST/periferico
