@@ -16,11 +16,13 @@ caracteristicas: Descrições adicionais do periférico <br>
 #### Exemplo de requisição:
 ```
 {
-	"nome": "Cobra Chroma"
+	"produtoNome": "Cobra Chroma"
 	"produtoTipo": "Mouse",
 	"modelo": "M711",
 	"marca": "Redragon",
-	"price":178.99,
+	"preco":178.99,
+	"quantidade":100,
+	"imagemUrl":imagem/perifericos/mouse.jpg
 	"caracteristicas":[{
 		"cor":"Preto",
 		"peso":7,
