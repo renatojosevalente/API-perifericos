@@ -40,6 +40,13 @@ Caso esta resposta aconteça, um novo periférico foi adicionado com sucesso no 
 ##### Erro! 500
 Caso essa resposta aconteça, significa que ocorreu um erro no acesso ao banco de dados da API.
 
+#### Exemplo de resposta:
+
+````
+
+message: "Periférico cadastrado com sucesso"
+
+````
 
 ### GET/periferico
 Este Endpoint é responsável por mostrar ao usuário todos os periféricos cadastrados no banco de dados.
