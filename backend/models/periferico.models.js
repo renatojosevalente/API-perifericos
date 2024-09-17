@@ -18,13 +18,14 @@ const caracteristicaSchema = new Schema({
     dimensao: [dimensoesSchema]  // Inclui as dimensões dentro das características
 });
 
-// Define o esquema principal para um periférico
+// Define o esquema principal para um periférico, agora com campo de imagem
 const perifericosSchema = new Schema({
     produtoNome: String,
     produtoTipo: String,
     modelo: String,
     marca: String,
     preco: Number,
+    imagemUrl: String,  // Campo para armazenar a URL da imagem
     caracteristicas: [caracteristicaSchema]  // Lista de características do periférico
 });
 

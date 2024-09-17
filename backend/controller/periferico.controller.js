@@ -4,11 +4,19 @@ const Periferico = require('../models/periferico.models.js');
 // Adiciona um novo periférico ao banco de dados
 const addPeriferico = async (req, res) => {
     try {
-        // Desestrutura as informações do corpo da requisição
-        const { produtoNome, produtoTipo, modelo, marca, preco, caracteristicas } = req.body;
+        // Desestrutura as informações do corpo da requisição, incluindo a imagem
+        const { produtoNome, produtoTipo, modelo, marca, preco, caracteristicas, imagemUrl } = req.body;
 
         // Cria e salva o novo periférico no banco de dados
-        const periferico = await Periferico.create({ produtoNome, produtoTipo, modelo, marca, preco, caracteristicas });
+        const periferico = await Periferico.create({ 
+            produtoNome, 
+            produtoTipo, 
+            modelo, 
+            marca, 
+            preco, 
+            caracteristicas,
+            imagemUrl  // Adiciona a URL da imagem
+        });
 
         // Retorna o periférico criado com sucesso
         res.status(200).json({ message: "Periférico cadastrado com sucesso", periferico });
@@ -77,11 +85,15 @@ const updatePeriferico = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Atualiza as informações do periférico
+        // Atualiza as informações do periférico, incluindo a URL da imagem
         const periferico = await Periferico.findByIdAndUpdate(id, req.body, { new: true });
 
+        if (!periferico) {
+            return res.status(404).json({ message: 'Periférico não encontrado' });
+        }
+
         // Retorna o periférico atualizado
-        res.status(200).json(periferico);
+        res.status(200).json({ message: "Periférico atualizado com sucesso", periferico });
     } catch (error) {
         // Retorna erro em caso de falha
         res.status(500).json({ message: error.message });

@@ -12,7 +12,6 @@ const port = '5000';
 
 // Importa o roteador que define as rotas para gerenciar periféricos.
 const perifericoRouter = require('./routes/periferico.routes.js');
-const userRouter = require('./routes/user.routes.js');
 
 // Configura o Express para usar o middleware que faz o parsing de JSON nas requisições.
 app.use(express.json());
@@ -23,7 +22,7 @@ app.use(express.json());
 // Função para estabelecer a conexão com o banco de dados MongoDB.
 function connection() {
     // Conecta ao banco de dados MongoDB local na porta padrão 27017.
-    mongoose.connect('mongodb://localhost:27017/')
+    mongoose.connect('mongodb+srv://admin:admin@apiperifericos.nao2t.mongodb.net/apiperifericos?retryWrites=true&w=majority&appName=ApiPerifericos')
     .then(() => {
         // Se a conexão for bem-sucedida, exibe uma mensagem no console.
         console.log('CONECTADO AO DB');
@@ -44,5 +43,3 @@ app.listen(port, () => {
 
 // Configura o Express para usar o roteador importado para todas as requisições que começam com '/periferico'.
 app.use('/periferico', perifericoRouter);
-
-app.use('/usuario', userRouter);
