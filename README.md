@@ -161,14 +161,14 @@ message: "Periférico deletado com sucesso"
 Este endpoint é responsável por modificar as características do periférico selecionado.
 
 #### Parâmetros:
-nome: Nome do periférico
-produtoTipo: Tipo de periférico
-modelo: Modelo do periférico
-marca: Marca do periférico
-preco: 178.99
-quantidade: 100
-imagemUrl: campo para armazenar a Url da imagem
-caracteristicas: Descrições adicionais do periférico
+nome: Nome do periférico <br>
+produtoTipo: Tipo de periférico <br>
+modelo: Modelo do periférico <br>
+marca: Marca do periférico <br>
+preco: 178.99 <br>
+quantidade: 100 <br>
+imagemUrl: campo para armazenar a Url da imagem <br>
+caracteristicas: Descrições adicionais do periférico <br>
 
 #### Exemplo de requisição:
 ````
